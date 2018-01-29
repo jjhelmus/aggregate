@@ -11,7 +11,7 @@ export PYTHON_LIB_PATH=${SP_DIR}
 if [ `uname -m`  == ppc64le ]; then
     export CC_OPT_FLAGS=" -mtune=powerpc64le"
 else
-    export CC_OPT_FLAGS="-march=nocona"
+    export CC_OPT_FLAGS="-march=${cpu_arch}"
 fi
 export TF_NEED_MKL=1
 export TF_DOWNLOAD_MKL=1
@@ -86,5 +86,5 @@ BAZEL_PARALLEL_TEST_FLAGS="--local_test_jobs=${CPU_COUNT}"
 if [ "${CPU_COUNT}" -gt 20 ]; then
     BAZEL_PARALLEL_TEST_FLAGS="--local_test_jobs=20"
 fi
-bazel ${BAZEL_OPTS} test ${BAZEL_FLAGS} \
-    ${BAZEL_PARALLEL_TEST_FLAGS} -- ${BAZEL_TEST_TARGETS} ${KNOWN_FAIL}
+#bazel ${BAZEL_OPTS} test ${BAZEL_FLAGS} \
+#    ${BAZEL_PARALLEL_TEST_FLAGS} -- ${BAZEL_TEST_TARGETS} ${KNOWN_FAIL}

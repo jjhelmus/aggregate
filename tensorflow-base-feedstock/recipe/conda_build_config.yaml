@@ -1,0 +1,10 @@
+cpu_arch:
+  #- nocona
+  #- sandybridge
+  - ivybridge
+  #- haswell
+  #- broadwell
+  #- skylake
+  #- skylake-avx512
+python:
+  - 3.6

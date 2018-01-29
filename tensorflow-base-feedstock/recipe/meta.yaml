@@ -1,7 +1,7 @@
 {% set version = "1.4.1" %}
 
 package:
-  name: tensorflow-base
+  name: tensorflow-{{ cpu_arch }}-base
   version: {{ version }}
 
 source:
@@ -54,7 +54,7 @@ test:
   imports:
     - tensorflow
   commands:
-    - conda inspect linkages -p $PREFIX tensorflow-base  # [linux]
+    - conda inspect linkages -p $PREFIX tensorflow-{{ cpu_arch }}-base  # [linux]
 
 about:
   home: http://tensorflow.org/
