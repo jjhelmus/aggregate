@@ -23,6 +23,10 @@ build:
 
 requirements:
   build:
+    # use the GCC 5.5.0 toolchain
+    - gxx_impl_linux-64 ==5.5.0
+    - gcc_impl_linux-64 ==5.5.0
+  host:
     # conda build requirements
     - bazel >=0.5.4
     - pip

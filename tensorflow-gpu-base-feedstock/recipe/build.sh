@@ -2,6 +2,9 @@
 
 set -vex
 
+# activate the GCC 5.5.0 toolchain
+source ${RECIPE_DIR}/activate_toolchain_gcc5.5.sh
+
 mkdir -p ./bazel_output_base
 export BAZEL_OPTS="--batch --output_base=./bazel_output_base"
 
