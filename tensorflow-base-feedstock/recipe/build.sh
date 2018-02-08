@@ -31,7 +31,7 @@ export TF_NEED_MPI=0
 yes "" | ./configure
 
 # build using bazel
-bazel ${BAZEL_OPTS} build \
+bazel ${BAZEL_OPTS} build --linkopt='-lrt' \
     --logging=6 \
     --subcommands \
     --verbose_failures \
