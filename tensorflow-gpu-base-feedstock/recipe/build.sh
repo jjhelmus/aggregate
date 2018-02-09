@@ -47,7 +47,8 @@ export TF_CUDA_COMPUTE_CAPABILITIES="3.0,3.5,5.2"
 if [ ${cudatoolkit} == "8.0" ]; then
     export TF_CUDA_COMPUTE_CAPABILITIES="3.0,3.5,5.2,6.0,6.1"
 fi
-export GCC_HOST_COMPILER_PATH="/opt/rh/devtoolset-2/root/usr/bin/gcc"
+#export GCC_HOST_COMPILER_PATH="/opt/rh/devtoolset-2/root/usr/bin/gcc"
+export GCC_HOST_COMPILER_PATH="${CC}"
 # Use system paths here rather than $PREFIX to allow Bazel to find the correct
 # libraries.  RPATH is adjusted post build to link to the DSOs in $PREFIX
 export CUDA_TOOLKIT_PATH="/usr/local/cuda"
@@ -63,7 +64,7 @@ fi
 # ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1
 # on a "real" system the so.1 library is typically in /usr/local/nvidia/lib64
 # add the stubs directory to LD_LIBRARY_PATH so libcuda.so.1 can be found
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64/stubs/:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64/stubs/:/usr/local/cuda/:${LD_LIBRARY_PATH}"
 
 ./configure
 
@@ -72,7 +73,10 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64/stubs/:${LD_LIBRARY_PATH}"
 #    --logging=6 \
 #    --subcommands \
 bazel ${BAZEL_OPTS} build \
+    --linkopt="-L${PREFIX}/lib" \
     --verbose_failures \
+    --logging=6 \
+    --subcommands \
     --config=opt \
     --config=cuda \
     --color=yes \

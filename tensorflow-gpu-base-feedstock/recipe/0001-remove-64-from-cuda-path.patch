@@ -1,0 +1,29 @@
+From 3c7e4d2cdce6a091b3dacfe62f0a686ae9eb8348 Mon Sep 17 00:00:00 2001
+From: Jonathan Helmus <jjhelmus@gmail.com>
+Date: Fri, 9 Feb 2018 14:35:43 -0600
+Subject: [PATCH] remove 64 from cuda path
+
+---
+ tensorflow/core/platform/default/build_config/BUILD | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/tensorflow/core/platform/default/build_config/BUILD b/tensorflow/core/platform/default/build_config/BUILD
+index f746b15fee..0183dae758 100644
+--- a/tensorflow/core/platform/default/build_config/BUILD
++++ b/tensorflow/core/platform/default/build_config/BUILD
+@@ -185,6 +185,12 @@ cc_library(
+         "//conditions:default": [
+             "-Wl,-rpath,../local_config_cuda/cuda/lib64",
+             "-Wl,-rpath,../local_config_cuda/cuda/extras/CUPTI/lib64",
++            "-Wl,-rpath,../local_config_cuda/cuda/lib",
++            "-Wl,-rpath,../local_config_cuda/cuda/extras/CUPTI/lib",
++            "-Wl,-rpath,/usr/local/cuda/lib64",
++            "-Wl,-rpath,/usr/local/cuda/lib64/stubs",
++            "-L/usr/local/cuda/lib64",
++            "-L/usr/local/cuda/lib64/stubs",
+         ],
+     }),
+     deps = [
+-- 
+2.11.1
+
