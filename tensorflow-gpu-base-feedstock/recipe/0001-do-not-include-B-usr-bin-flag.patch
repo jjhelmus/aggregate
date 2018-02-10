@@ -1,8 +1,11 @@
-From a3218fe56608652dba2539f1b6182fcc35a45022 Mon Sep 17 00:00:00 2001
+From 98524540a0993e271796c4c3af2843b5542cc6d1 Mon Sep 17 00:00:00 2001
 From: Jonathan Helmus <jjhelmus@gmail.com>
 Date: Thu, 8 Feb 2018 12:32:48 -0600
-Subject: [PATCH] testing
+Subject: [PATCH 1/2] do not include -B/usr/bin flag
 
+Do not include the -B/usr/bin flag when compiling.  The toolchain is provided
+entirely by conda packages and there is no need to use they system provided
+tools.
 ---
  third_party/gpus/crosstool/CROSSTOOL_clang.tpl  | 1 -
  third_party/gpus/crosstool/CROSSTOOL_nvcc.tpl   | 1 -

@@ -17,8 +17,8 @@ source:
     - fix-lookup_ops-test.patch                       # [linux]
     - undef_have_stropts_h.patch
     - 0001-include-glibc-2.11-fix-in-add_boringssl_s390x.patch
-    - 0001-testing.patch
-    - 0001-remove-64-from-cuda-path.patch
+    - 0001-do-not-include-B-usr-bin-flag.patch
+    - 0002-add-additional-cuda-rpaths.patch
 
 build:
   number: 0
