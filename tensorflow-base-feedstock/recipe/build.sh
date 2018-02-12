@@ -31,7 +31,7 @@ export TF_NEED_MPI=0
 yes "" | ./configure
 
 # build using bazel
-bazel ${BAZEL_OPTS} build --linkopt='-lrt' \
+bazel ${BAZEL_OPTS} build --linkopt="-lrt" \
     --logging=6 \
     --subcommands \
     --verbose_failures \
@@ -64,7 +64,9 @@ rm -rf ${PIP_TEST_ROOT}/tensorflow/contrib/tensorboard
 #   debug:dist_session_debug_grpc_test requires specific build env setup
 KNOWN_FAIL="
    -${PIP_TEST_PREFIX}/tensorflow/python/debug:dist_session_debug_grpc_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/debug:session_debug_grpc_test"
+   -${PIP_TEST_PREFIX}/tensorflow/python/debug:session_debug_grpc_test
+   -${PIP_TEST_PREFIX}/tensorflow/contrib/lite/python:lite_test
+   -${PIP_TEST_PREFIX}/tensorflow/python/debug:source_remote_test"
 if [ `uname -m`  == ppc64le ]; then
     # Python on ppc64le is built without the curses/readline module
     # Some tests are known fails on ppc64le but do not effect normal uses cases
