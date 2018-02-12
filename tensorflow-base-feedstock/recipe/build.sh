@@ -3,18 +3,12 @@
 set -ex
 
 mkdir -p ./bazel_output_base
-#export BAZEL_OPTS="--batch --output_base=./bazel_output_base"
+export BAZEL_OPTS="--batch "
 
 # Compile tensorflow from source
 export PYTHON_BIN_PATH=${PYTHON}
 export PYTHON_LIB_PATH=${SP_DIR}
-if [ `uname -m`  == ppc64le ]; then
-    export CC_OPT_FLAGS=" -mtune=powerpc64le"
-else
-    export CC_OPT_FLAGS="-march=nocona"
-fi
-#export TF_NEED_MKL=1
-#export TF_DOWNLOAD_MKL=1
+export CC_OPT_FLAGS="-march=nocona"
 
 # disable jemmloc (needs MADV_HUGEPAGE macro which is not in glib <= 2.12)
 export TF_NEED_JEMALLOC=0
@@ -31,9 +25,7 @@ export TF_NEED_MPI=0
 yes "" | ./configure
 
 # build using bazel
-bazel ${BAZEL_OPTS} build --linkopt="-lrt" \
-    --logging=6 \
-    --subcommands \
+bazel ${BAZEL_OPTS} build \
     --verbose_failures \
     --config=opt //tensorflow/tools/pip_package:build_pip_package
 

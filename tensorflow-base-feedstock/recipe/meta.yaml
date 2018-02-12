@@ -15,9 +15,7 @@ source:
     - relax-tolerence-in-fft_ops_test.patch           # [linux]
     - skip-read-only-debugger_cli_common-test.patch   # [linux]
     - fix-lookup_ops-test.patch                       # [linux]
-      #- 0001-include-glibc-2.11-fix-in-add_boringssl_s390x.patch
-      #- rt_link_arg.patch                               # [linux]
-    - 0001-wip.patch
+    - 0001-add-rt-to-linkopts.patch                   # [linux]
 
 build:
   number: 0
@@ -39,8 +37,8 @@ requirements:
     - six >=1.10.0
     - protobuf >=3.4.0
     - numpy 1.12*
-    - mock >=2.0.0        # [py2k]
     - enum34 >=1.1.6      # [py2k]
+    - mock >=2.0.0        # [py2k]
     - backports.weakref >=1.0rc1  # [py2k]
     - absl-py >=0.1.6
     # the following packages are required for testing
@@ -53,8 +51,8 @@ requirements:
     - protobuf >=3.4.0
     - {{ pin_compatible('numpy') }}
     - enum34 >=1.1.6      # [py2k]
-    - backports.weakref >=1.0rc1  # [py2k]
     - mock >=2.0.0        # [py2k]
+    - backports.weakref >=1.0rc1  # [py2k]
     - absl-py >=0.1.6
 
 test:
