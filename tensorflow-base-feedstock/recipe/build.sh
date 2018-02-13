@@ -57,24 +57,8 @@ rm -rf ${PIP_TEST_ROOT}/tensorflow/contrib/tensorboard
 KNOWN_FAIL="
    -${PIP_TEST_PREFIX}/tensorflow/python/debug:dist_session_debug_grpc_test
    -${PIP_TEST_PREFIX}/tensorflow/python/debug:session_debug_grpc_test
-   -${PIP_TEST_PREFIX}/tensorflow/contrib/lite/python:lite_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/debug:source_remote_test"
-if [ `uname -m`  == ppc64le ]; then
-    # Python on ppc64le is built without the curses/readline module
-    # Some tests are known fails on ppc64le but do not effect normal uses cases
-    KNOWN_FAIL="
-   -${PIP_TEST_PREFIX}/tensorflow/python/debug:curses_ui_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/debug:readline_ui_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:denormal_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:matrix_triangular_solve_op_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:sparse_matmul_op_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:sparse_tensor_dense_matmul_op_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:svd_op_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:tensordot_op_test
-   -${PIP_TEST_PREFIX}/tensorflow/python:nn_test
-   -${PIP_TEST_PREFIX}/tensorflow/python/kernel_tests:summary_image_op_test"
-fi
-
+   -${PIP_TEST_PREFIX}/tensorflow/python/debug:source_remote_test
+   -${PIP_TEST_PREFIX}/tensorflow/contrib/lite/python:lite_test"
 PIP_TEST_FILTER_TAG="-no_pip"
 BAZEL_FLAGS="--define=no_tensorflow_py_deps=true --test_lang_filters=py \
       --build_tests_only -k --test_tag_filters=${PIP_TEST_FILTER_TAG} \
