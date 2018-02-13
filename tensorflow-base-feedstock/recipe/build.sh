@@ -52,8 +52,9 @@ ln -s $(pwd)/tensorflow ${PIP_TEST_ROOT}/tensorflow
 rm -rf ${PIP_TEST_ROOT}/tensorflow/contrib/tensorboard
 
 # Test which are known to fail and have been confirm to not effect the package
+#   without dist_session_debug_grpc_test the test commands returns non-zero
 #   debug:session_debug_grpc_test requires grpcio to be installed
-#   debug:dist_session_debug_grpc_test requires specific build env setup
+#   debug:source_remote_test requires grpcio to be installed
 KNOWN_FAIL="
    -${PIP_TEST_PREFIX}/tensorflow/python/debug:dist_session_debug_grpc_test
    -${PIP_TEST_PREFIX}/tensorflow/python/debug:session_debug_grpc_test
