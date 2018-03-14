@@ -26,9 +26,9 @@ if [[ ${ARCH} == 'ppc64le' ]]; then
     BLAS=open
 fi
 
-CUDA_ARCH_BIN="30 35 50 52 60 61"
+CUDA_ARCH_BIN="20 21(20) 30 35 50 52"
 
-cmake \
+cmake -LAH \
       -DUSE_CUDNN=1                                         \
       -DCUDA_ARCH_NAME="Manual"                             \
       -DCUDA_ARCH_BIN="${CUDA_ARCH_BIN}"                    \
@@ -37,6 +37,7 @@ cmake \
       -DNUMPY_INCLUDE_DIR="${SITE_PKGS}/numpy/core/include" \
       -DNUMPY_VERSION=${NPY_VER}                            \
       -DPYTHON_EXECUTABLE="${PREFIX}/bin/python"            \
+      -DCUDA_NVCC_FLAGS="-Xcompiler -std=c++98"             \
       -DBUILD_docs="OFF"                                    \
       ..
 make -j${CPU_COUNT}
@@ -45,7 +46,7 @@ make -j${CPU_COUNT}
 # https://github.com/BVLC/caffe/issues/4083#issuecomment-227046096
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
-LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH} make -j${CPU_COUNT} runtest
+#LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH} make -j${CPU_COUNT} runtest
 
 make install
 
