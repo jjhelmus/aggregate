@@ -27,5 +27,5 @@ To build a conda tensorflow package with GPU support
     To start a build use:
 
     ```
-    conda build --no-test -c jjhelmus/label/sles11_cuda_toolchain .
+    conda build --no-test .
     ```

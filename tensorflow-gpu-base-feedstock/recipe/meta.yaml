@@ -20,6 +20,8 @@ source:
     # GPU patches
     - 0001-do-not-include-B-usr-bin-flag.patch
     - 0002-add-additional-cuda-rpaths.patch
+    # patch to support glibc 2.11, apply only when needed
+    #- support_glibc_2_11.patch
 
 build:
   number: 0
@@ -31,7 +33,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     # conda build requirements
-    - bazel >=0.5.4
+    - bazel >=0.5.4,<0.10.0
     - pip
     - python
     - swig
