@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# When run on a system without a GPU, PyTorch does not require the CUDA
+# libraries. Therefore symbols should not be resolved at load time rather
+# resolution should be defered until the function is called (lazy binding).
+# Adjust LDFLAGS to produce shared libraries with lazy symbol binding.
+export LDFLAGS="${LDFLAGS//-Wl,-z,now/-Wl,-z,lazy}"
+
 export NCCL_LIB_DIR="${PREFIX}/lib"
 export NCCL_INCLUDE_DIR="${PREFIX}/include"
 
