@@ -17,10 +17,10 @@ source:
     - fix-lookup_ops-test.patch                       # [linux]
     - 0001-add-rt-to-linkopts.patch                   # [linux]
     # use the full MKL install from conda
-    - use_installed_mkl.patch                         # [linux]
+    #- use_installed_mkl.patch                         # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not linux64]
 
 requirements:
@@ -29,7 +29,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     # conda build requirements
-    - bazel >=0.5.4
+    - bazel >=0.5.4,<0.12.0
     - pip
     - python
     - swig
@@ -51,7 +51,7 @@ requirements:
     - portpicker
     - scipy
     - scikit-learn
-    - mkl-devel
+    #- mkl-devel
   run:
     - python
     - termcolor >=1.1.0
