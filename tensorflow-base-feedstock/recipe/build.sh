@@ -29,18 +29,18 @@ export PYTHON_BIN_PATH=${PYTHON}
 export PYTHON_LIB_PATH=${SP_DIR}
 export USE_DEFAULT_PYTHON_LIB_PATH=1
 
-if [[ ${HOST} =~ .*linux.* ]]; then
-    # MKL settings, use the full version of MKL from the mkl conda package
-    export TF_NEED_MKL=1
-    export TF_MKL_ROOT=${PREFIX}
-
-    # MKL needs a license.txt file, create an empty one which will be removed later
-    touch ${PREFIX}/license.txt
-
-    # fortran files in the include directory confuse bazel, remove them
-    rm -f ${PREFIX}/include/*.fi
-    rm -f ${PREFIX}/include/*.f90
-fi
+#if [[ ${HOST} =~ .*linux.* ]]; then
+#    # MKL settings, use the full version of MKL from the mkl conda package
+#    export TF_NEED_MKL=1
+#    export TF_MKL_ROOT=${PREFIX}
+#
+#    # MKL needs a license.txt file, create an empty one which will be removed later
+#    touch ${PREFIX}/license.txt
+#
+#    # fortran files in the include directory confuse bazel, remove them
+#    rm -f ${PREFIX}/include/*.fi
+#    rm -f ${PREFIX}/include/*.f90
+#fi
 
 # This is just a placeholder to satisfy the configure prompt.
 # It gets overwritten by --config=mkl below.
@@ -75,7 +75,7 @@ if [[ ${HOST} =~ .*darwin.* ]]; then
 else
     bazel ${BAZEL_OPTS} build \
         --verbose_failures \
-        --config=mkl \
+        --config=opt \
         //tensorflow/tools/pip_package:build_pip_package
 fi
 
@@ -88,9 +88,9 @@ pip install --no-deps $SRC_DIR/tensorflow_pkg/*.whl
 
 # Remove extra cruft from MKL.  These file are already available in the mkl
 # conda package and are not needed in the the tensorflow package.
-rm -rf ${SP_DIR}/_solib_k8
-rm -rf ${SP_DIR}/external/mkl
-rm -f ${PREFIX}/license.txt
+#rm -rf ${SP_DIR}/_solib_k8
+#rm -rf ${SP_DIR}/external/mkl
+#rm -f ${PREFIX}/license.txt
 
 # Run unit tests on the pip installation
 # Logic here is based off run_pip_tests.sh in the tensorflow repo
