@@ -84,8 +84,8 @@ if [[ ! -n $(find ${SRC_DIR}/gcc_built -iname ${ctng_cpu_arch}-${ctng_vendor}-*-
     yes "" | ct-ng oldconfig
     # Now filter out 'things that cause problems'. For example, depending on the base sample, you can end up with
     # two different glibc versions in-play.
-    sed -i.bak '/CT_LIBC/d' .config
-    sed -i.bak '/CT_LIBC_GLIBC/d' .config
+    #sed -i.bak '/CT_LIBC/d' .config
+    #sed -i.bak '/CT_LIBC_GLIBC/d' .config
     # And undo any damage to version numbers => the seds above could be moved into this too probably.
     write_ctng_config_after .config
     if cat .config | grep "CT_GDB_NATIVE=y"; then
