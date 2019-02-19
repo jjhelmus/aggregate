@@ -1,7 +1,7 @@
-From 7b14824b86e2fb8d9e6e317bd3b4f314bb01f95d Mon Sep 17 00:00:00 2001
+From a2c9216a06b4f90eb7c86875d2b3ca18b8c71f3d Mon Sep 17 00:00:00 2001
 From: Jonathan Helmus <jjhelmus@gmail.com>
 Date: Wed, 1 Aug 2018 15:13:37 -0500
-Subject: [PATCH 2/4] lazy bind C extension
+Subject: [PATCH 2/5] lazy bind C extension
 
 When run on a system without a GPU, PyTorch does not require the CUDA
 libraries. Therefore symbols should not be resolved at load time rather
@@ -11,10 +11,10 @@ resolution should be defered until the function is called (lazy binding).
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/setup.py b/setup.py
-index 2065462..74f2ed6 100644
+index 732cd5b..6e53f79 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -862,7 +862,7 @@ C = Extension("torch._C",
+@@ -764,7 +764,7 @@ C = Extension("torch._C",
                extra_compile_args=main_compile_args + extra_compile_args,
                include_dirs=[],
                library_dirs=library_dirs,

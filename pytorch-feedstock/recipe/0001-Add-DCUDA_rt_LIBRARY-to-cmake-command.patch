@@ -1,7 +1,7 @@
-From 63f068af6e5dfd4f44fe4b04c4b8341d2bb76397 Mon Sep 17 00:00:00 2001
+From 8cf0162865966a6dbc980cb135117fb934d271f3 Mon Sep 17 00:00:00 2001
 From: Jonathan Helmus <jjhelmus@gmail.com>
 Date: Mon, 7 Jan 2019 13:45:18 -0600
-Subject: [PATCH 1/4] Add -DCUDA_rt_LIBRARY to cmake command
+Subject: [PATCH 1/5] Add -DCUDA_rt_LIBRARY to cmake command
 
 -DCUDA_rt_LIBRARY is set so that the librt library in the sysroot is
 used rather than the system librt.  Without this change the build fails with

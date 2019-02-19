@@ -1,7 +1,7 @@
-From 5168114b55faaafa04ae5b62ff6b98792fb96a0a Mon Sep 17 00:00:00 2001
+From 832af069c7ccd88b57bff14c86203cd63d43b1d4 Mon Sep 17 00:00:00 2001
 From: Jonathan Helmus <jjhelmus@gmail.com>
 Date: Fri, 25 Jan 2019 17:12:26 -0600
-Subject: [PATCH 4/4] pass module linker flags to cmake
+Subject: [PATCH 4/5] pass module linker flags to cmake
 
 ---
  tools/build_pytorch_libs.sh | 1 +

@@ -1,7 +1,5 @@
-#{% set version = "1.0.1" %}
-#{% set commit = "743fdbdb192dd0f07d51d6f94f8b47984484b54f" %}
-{% set version = "1.0.0" %}
-{% set commit = "db5d3131d16f57abd4f13d3f4b885d5f67bf6644" %}
+{% set version = "1.0.1" %}
+{% set commit = "743fdbdb192dd0f07d51d6f94f8b47984484b54f" %}
 
 package:
   name: pytorch
@@ -15,6 +13,7 @@ source:
     - 0002-lazy-bind-C-extension.patch
     - 0003-always-add-librt-to-requirements.patch
     - 0004-pass-module-linker-flags-to-cmake.patch
+    - 0005-always-link-rt-to-shm-and-torch_shm_manager.patch
     # https://github.com/pytorch/pytorch/issues/4499
     # merged upstream in https://github.com/facebookincubator/gloo/pull/127
     - mkl_dnn_disable_Werror_and_mnative.patch
@@ -32,9 +31,8 @@ requirements:
   host:
     - cmake
     # GPU requirements
-    - cudatoolkit {{ cudatoolkit }}
-    - cudnn {{ cudnn }}
-    #- nccl
+    - cudatoolkit {{ cudatoolkit }}*
+    - cudnn {{ cudnn }}*
     # other requirements
     - python
     - numpy

@@ -1,7 +1,7 @@
-From c9281e6fa862a368a2c8c780cbf6dabec424ee7f Mon Sep 17 00:00:00 2001
+From 08c8465bd19523d1b86315aa7537c3b9d8948d49 Mon Sep 17 00:00:00 2001
 From: Jonathan Helmus <jjhelmus@gmail.com>
 Date: Tue, 7 Aug 2018 14:10:03 -0500
-Subject: [PATCH 3/4] always add librt to requirements
+Subject: [PATCH 3/5] always add librt to requirements
 
 Always add librt to the list of required libraries.
 ---
@@ -22,10 +22,10 @@ index 07b3c10..7171744 100644
    IF(HAVE_SHM_OPEN)
      ADD_DEFINITIONS(-DHAVE_SHM_OPEN=1)
 diff --git a/cmake/Dependencies.cmake b/cmake/Dependencies.cmake
-index 754023e..8455321 100644
+index 0d62237..41b5fd0 100644
 --- a/cmake/Dependencies.cmake
 +++ b/cmake/Dependencies.cmake
-@@ -1339,6 +1339,7 @@ if (NOT BUILD_ATEN_MOBILE)
+@@ -1353,6 +1353,7 @@ if (NOT BUILD_ATEN_MOBILE)
      ENDIF(HAVE_MMAP)
      # done for lseek: https://www.gnu.org/software/libc/manual/html_node/File-Position-Primitive.html
      ADD_DEFINITIONS(-D_FILE_OFFSET_BITS=64)
