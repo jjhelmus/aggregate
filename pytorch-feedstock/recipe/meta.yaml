@@ -46,9 +46,8 @@ requirements:
 
   run:
     # GPU requirements
-    - {{ pin_compatible('cudatoolkit') }}
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
     - {{ pin_compatible('cudnn') }}
-    #- {{ pin_compatible('nccl') }}
     # other requirements
     - python
     - {{ pin_compatible('numpy') }}
