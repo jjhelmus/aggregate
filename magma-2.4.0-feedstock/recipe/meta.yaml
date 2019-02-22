@@ -1,0 +1,32 @@
+# adapted from recipe in https://github.com/pytorch/builder
+# TODO: examine if it is possible to link DSO dynamically
+package:
+  name: magma
+  version: 2.4.0
+
+source:
+   url: http://icl.cs.utk.edu/projectsfiles/magma/downloads/magma-2.4.0.tar.gz
+   sha256: 4eb839b1295405fd29c8a6f5b4ed578476010bf976af46573f80d1169f1f9a4f
+   patches:
+    - cmakelists.patch
+    - thread_queue.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+  host:
+    - cudatoolkit {{ cudatoolkit }}*
+  run:
+    - {{ pin_compatible('cudatoolkit', max_pin='x.x') }}
+
+about:
+  home: http://icl.cs.utk.edu/magma/software/index.html
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: COPYRIGHT
+  summary: Matrix Algebra on GPU and Multicore Architectures
